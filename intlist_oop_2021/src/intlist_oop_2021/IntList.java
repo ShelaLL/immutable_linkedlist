@@ -12,12 +12,19 @@ import java.util.Arrays;
 public class IntList {
 	
 	/**
+	 * @invar | elements!= null
+	 * 
+	 * @representationObject
+	 */
+	//Any object used by a class to help represent the abstract state of an instance of that class is called the representationObject
+	private int[] elements;
+	/**
 	 * Returns an array containing the elements of this object
 	 * 
 	 * @creates | result
 	 */
 	//Using the create demands the class to create a new array object every time we called getElements()
-	public int[] getElements() { throw new RuntimeException("Not yet implemented");}
+	public int[] getElements() {return elements.clone();}
 
 	/**
 	 * Initializes this object so that it represents of int values contained in the given array.
@@ -27,5 +34,7 @@ public class IntList {
 	 */
 	//Allow the class to create a new array object whenever the getElements() is called. Cannot write getElements()==elements
 	//We want to compare the contents of the array--> use the helper method from the java library
-	public IntList(int[] elements){ throw new RuntimeException("Not yet implemented");}
+	public IntList(int[] elements){ 
+		this.elements= elements.clone();
+	}
 }
