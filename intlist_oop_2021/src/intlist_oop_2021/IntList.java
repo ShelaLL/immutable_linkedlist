@@ -115,7 +115,24 @@ public class IntList {
 	 * The elements that are behind the index shift one position behind to make place for the new element
 	 */
 	public void insertElement(int index, int value) {
-		throw new RuntimeException("Not yet implemented");
+		// we have to find the nodes preceding that index. With the head node, it does not have to be the preceding node. So do not write "Node node = head;"
+		Node sentinel = new Node();
+		sentinel.next = head;
+		Node node = sentinel;
+		//This will be the node preceding the first node. If want to insert before the first node, we will have to change the next pointer of the sentinel node
+		while(0 < index) {
+			node = node.next;
+			index--;
+		}
+		//So now we are pointing using variable node to the linked-list node preceding the one where we want to insert, preceding the location where we want to insert
+		Node newNode = new Node();
+		newNode.value = value;
+		newNode.next = node.next; 
+		node.next = newNode;
+		//So we now insert the newNode in the right position to implement the insertElement method
+		head = sentinel.next;
+		length++;
+		
 	}
 	
 	/**
@@ -133,7 +150,12 @@ public class IntList {
 	 */
 	//int can never be null, so do not need to write the precondition that index/value != null
 	public void setElement(int index, int value) {
-		throw new RuntimeException("Not yet implemented");
+		Node node = head;
+		while (0 < index) {
+			node = node.next;
+			index--;
+		}
+		node.value = value;
 	}
 	
 	
@@ -150,6 +172,15 @@ public class IntList {
 	 */
 	
 	public void removeElement (int index) {
-		throw new RuntimeException("Not yet implemented");
+		Node sentinel = new Node();
+		sentinel.next = head;
+		Node node = sentinel;
+		while ( 0 <  index) {
+			node = node.next;
+			index--;
+		}
+		node.next = node.next.next;
+		head = sentinel.next;
+		length--;
 	}	
 }
